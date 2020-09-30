@@ -9,7 +9,9 @@ import { hasData, asArray } from "../../../utils/utils";
 import { ACTION } from "../../../utils/constants";
 
 const WLModal = props => {
-  const TAB = { PAX: ["pax", "Passenger"], DOX: ["dox", "Document"] };
+  const TAB = { PAX: ["passenger", "Passenger"], DOX: ["document", "Document"] };
+  console.log(props.type);
+
   const type = (props.type || {})[0] === TAB.DOX[0] ? TAB.DOX : TAB.PAX;
   const id = props.id || 0;
   const mode = id === 0 ? "Add" : "Edit";
