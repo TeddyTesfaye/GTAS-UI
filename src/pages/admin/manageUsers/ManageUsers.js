@@ -74,6 +74,7 @@ const ManageUsers = props => {
       Accessor: "Edit",
       Xl8: true,
       Header: ["edit001", "Edit"],
+      width: 50,
       disableFilters: true,
       disableSortBy: true,
       Cell: ({ row }) => {
@@ -124,6 +125,7 @@ const ManageUsers = props => {
       Xl8: true,
       Header: ["manu011", "Active"],
       isBoolean: true,
+      width: 40,
       Cell: ({ row }) => {
         return (
           <div className="text-center">

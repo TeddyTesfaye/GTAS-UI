@@ -148,3 +148,21 @@
 .export-btn:hover {
   background-color: rgba(67, 74, 82, 0.24);
 }
+
+.resizer {
+  display: inline-block;
+  background: lightgrey;
+  border: 1px darkgray solid;
+  width: 8px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(50%);
+  z-index: 1;
+  touch-action: none;
+}
+
+.resizer .isResizing {
+  background: red;
+}

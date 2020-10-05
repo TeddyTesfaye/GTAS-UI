@@ -1,7 +1,14 @@
 import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { hasData, titleCase, asArray, altObj } from "../../utils/utils";
-import { useTable, usePagination, useSortBy, useFilters } from "react-table";
+import {
+  useTable,
+  usePagination,
+  useSortBy,
+  useFilters,
+  useResizeColumns,
+  useBlockLayout
+} from "react-table";
 import { navigate } from "@reach/router";
 // import { withTranslation } from 'react-i18next';
 import Xl8 from "../xl8/Xl8";
@@ -83,7 +90,10 @@ const Table = props => {
   const RTable = ({ columns, data }) => {
     const defaultColumn = React.useMemo(
       () => ({
-        Filter: ColumnFilter
+        Filter: ColumnFilter,
+        minWidth: 30,
+        width: 170,
+        maxWidth: 400
       }),
       []
     );
@@ -102,6 +112,7 @@ const Table = props => {
       previousPage,
       setPageSize,
       exportData,
+      resetResizing,
       state: { pageIndex, pageSize, sortBy }
     } = useTable(
       {
@@ -118,6 +129,8 @@ const Table = props => {
       },
       useFilters,
       useSortBy,
+      useBlockLayout,
+      useResizeColumns,
       usePagination,
       useExportData
     );
@@ -185,6 +198,12 @@ const Table = props => {
                             <span>
                               {hdr} {column.canSort ? sortIcon(column) : ""}
                             </span>
+                            <div
+                              {...column.getResizerProps()}
+                              className={`resizer ${
+                                column.isResizing ? "isResizing" : ""
+                              }`}
+                            />
                           </th>
                         );
                       })}
