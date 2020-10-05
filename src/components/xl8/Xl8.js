@@ -23,13 +23,17 @@ const Xl8 = props => {
     setShowModal(true);
   };
 
+  const getClass = () => {
+    return !props.xid ? "xid-warn" : "xid";
+  };
+
   useEffect(() => {
     const editstate = getLiveEditState();
     setIsEdit(editstate.isEdit);
   }, []);
 
   return isEdit ? (
-    <span {...translationProps} onClick={handleClick} className="xid">
+    <span {...translationProps} onClick={handleClick} className={getClass()}>
       {t(props.xid, props.children)}
     </span>
   ) : (

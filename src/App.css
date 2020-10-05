@@ -116,6 +116,17 @@ input[type="radio"] {
   border-radius: 6px;
 }
 
+.xid-warn {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  border: 2px dashed orange !important;
+  background-color: white;
+  color: darkred;
+  padding: 0px 5px;
+  border-radius: 6px;
+}
+
 .xid:after {
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;

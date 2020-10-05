@@ -1,20 +1,41 @@
 import React, { useState, useEffect, useContext } from "react";
 import Form from "../../components/form/Form";
 import LabelledInput from "../../components/labelledInput/LabelledInput";
+import Xl8 from "../../components/xl8/Xl8";
+import { ROLE } from "../../utils/constants";
 import { login } from "../../services/serviceWrapper";
 import { Alert, Card, Button } from "react-bootstrap";
 import { navigate, Link } from "@reach/router";
 import { UserContext } from "../../context/user/UserContext";
+import { LiveEditContext } from "../../context/translation/LiveEditContext";
 import "./Login.scss";
 import Logo from "../../images/WCO_GTAS_logo.svg";
 
 const Login = () => {
+  const [stopEdit, setStopEdit] = useState(false);
   const ctx = useContext(UserContext);
+  const { getLiveEditState, action } = useContext(LiveEditContext);
+  const editstate = getLiveEditState();
+
   const [alertVis, setAlertVis] = useState(false);
+  const [showDangerModal, setShowDangerModal] = useState(false);
 
   useEffect(() => {
-    ctx.userAction({ type: "logoff" });
+    const user = ctx.getUserState() || {};
+    if (editstate.isEdit && user.userRoles?.includes(ROLE.ADMIN)) {
+      setStopEdit(true);
+    } else {
+      if (editstate.isEdit) {
+        setStopEdit(true);
+      }
+      ctx.userAction({ type: "logoff" });
+    }
   }, []);
+
+  useEffect(() => {
+    action({ type: "read" });
+    if (stopEdit) window.location.reload();
+  }, [stopEdit]);
 
   const loginHandler = (status, res) => {
     if (res?.userId) {
@@ -44,11 +65,13 @@ const Login = () => {
         <Card.Img variant="top" src={Logo} className="logo" />
         <div className="placeholder"></div>
         <Card.Body className="login-card-body">
-          <Link to="/forgot-password">Forgot my password</Link>
+          <Link to="/forgot-password">
+            <Xl8 xid="login001">Forgot my password</Xl8>
+          </Link>
           <br />
           <Form
             title=""
-            submitText="LOGIN"
+            submitText={<Xl8 xid="login002">Login</Xl8>}
             submitService={login.post}
             callback={loginHandler}
             id="loginform"
@@ -80,11 +103,11 @@ const Login = () => {
           <div>
             {alertVis ? (
               <Alert variant="danger" dismissible onClose={() => setAlertVis(false)}>
-                Login failed.
+                <Xl8 xid="login003">Login Failed</Xl8>
               </Alert>
             ) : (
               <Button variant="outline-info" onClick={() => navigate("/signup")}>
-                Sign Up
+                <Xl8 xid="login004">Sign Up</Xl8>
               </Button>
             )}
           </div>

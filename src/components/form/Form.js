@@ -95,6 +95,7 @@ class Form extends React.Component {
   }
 
   onChange(ev) {
+    console.log(ev);
     const componentname = ev.name;
     const value = ev.value;
 

@@ -32,7 +32,9 @@ const Header = () => {
   const currentPath = useLocation();
 
   const logout = () => {
-    userAction({ type: "logoff" });
+    if (!user.userRoles.includes(ROLE.ADMIN)) {
+      userAction({ type: "logoff" });
+    }
 
     navigate("/login");
   };
@@ -148,7 +150,7 @@ const Header = () => {
               {<Xl8 xid="head005">Change password</Xl8>}
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="#" onClick={logout}>
+            <NavDropdown.Item as={Link} to="/login" onClick={logout}>
               {<Xl8 xid="head006">Logout</Xl8>}
             </NavDropdown.Item>
           </NavDropdown>

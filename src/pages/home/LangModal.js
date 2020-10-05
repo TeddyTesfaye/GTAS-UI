@@ -11,8 +11,11 @@ const LangModal = props => {
   const cb = function(result) {};
   const data = props.elem || {};
 
+  const preSubmit = text => {
+    return text;
+  };
+
   const postSubmit = (status, res) => {
-    console.log(status);
     props.onHide();
     if (status === ACTION.SAVE) window.location.reload();
   };
@@ -32,6 +35,7 @@ const LangModal = props => {
         <Container fluid>
           <Form
             submitService={translations.post}
+            paramCallback={preSubmit}
             callback={postSubmit}
             action="add"
             cancellable

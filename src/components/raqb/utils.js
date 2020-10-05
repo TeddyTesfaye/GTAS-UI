@@ -60,7 +60,6 @@ const importRule = raw => {
 
   rule.children1 = children1;
 
-  // console.log("RULE", raw, children1);
   return rule;
 };
 
@@ -98,7 +97,6 @@ const exportGroup = (raw, isFirstLevel) => {
 };
 
 const exportRule = raw => {
-  // console.log("EXPORTING RULE", raw);
   let terms = {};
   let invalid = false;
 
@@ -144,7 +142,6 @@ const getValue = (type, val, op, isImporting = true) => {
 
   let convertedVal = val;
 
-  // console.log(val, type);
   if (type === "boolean") {
     return isImporting ? [!!val[0]] : [(+val[0]).toString()]; // convert to t/f if importing, "0"/"1" if exporting
   }
