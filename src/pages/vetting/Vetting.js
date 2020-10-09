@@ -175,7 +175,7 @@ const Vetting = props => {
   endDate.setDate(endDate.getDate() + 7);
   startDate.setHours(startDate.getHours() - 7);
   const [data, setData] = useState();
-  const [hitCategoryOptions, setHitCategoryOptions] = useState();
+  const [hitCategoryOptions, setHitCategoryOptions] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const showDateTimePicker = useRef(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -281,6 +281,7 @@ const Vetting = props => {
         };
       });
       setHitCategoryOptions(options);
+      setRefreshKey(refreshKey + 1);
     });
   }, []);
 
@@ -340,18 +341,16 @@ const Vetting = props => {
               callback={cb}
               alt={<Xl8 xid="3">Hit Types</Xl8>}
             />
-            {hasData(hitCategoryOptions) && (
-              <LabelledInput
-                name="ruleCatFilter"
-                datafield="ruleCatFilter"
-                labelText={<Xl8 xid="vet010">Passenger Hit Categories</Xl8>}
-                inputType="multiSelect"
-                inputVal={hitCategoryOptions}
-                options={hitCategoryOptions}
-                callback={cb}
-                alt={<Xl8 xid="3">Passenger Hit Categories</Xl8>}
-              />
-            )}
+            <LabelledInput
+              name="ruleCatFilter"
+              datafield="ruleCatFilter"
+              labelText={<Xl8 xid="vet010">Passenger Hit Categories</Xl8>}
+              inputType="multiSelect"
+              inputVal={hitCategoryOptions}
+              options={hitCategoryOptions}
+              callback={cb}
+              alt={<Xl8 xid="3">Passenger Hit Categories</Xl8>}
+            />
             <LabelledInput
               datafield="lastName"
               labelText={<Xl8 xid="vet011">Last Name</Xl8>}
