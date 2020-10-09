@@ -68,7 +68,7 @@ const Vetting = props => {
           <Xl8 xid="vet001">Name:</Xl8> {pax.paxName}
         </li>
         <li>
-          <Xl8 xid="vet002">DOB:</Xl8> {`${pax.dob} (${getAge(pax.dob)})`}{" "}
+          <Xl8 xid="vet002">DOB:</Xl8> {`${pax.dob} (${getAge(pax.dob)})`}
         </li>
         <li>
           <Xl8 xid="vet003">Nationality:</Xl8> {pax.nationality}

@@ -7,7 +7,6 @@ import FilterForm from "../../components/filterForm2/FilterForm";
 import Main from "../../components/main/Main";
 import SidenavContainer from "../../components/sidenavContainer/SidenavContainer";
 import CountdownBadge from "../../components/countdownBadge/CountdownBadge";
-// import Tabs from "../../components/tabs/Tabs";
 
 import { Col, Tabs, Tab } from "react-bootstrap";
 import { hasData, alt, localeDate, asArray } from "../../utils/utils";
