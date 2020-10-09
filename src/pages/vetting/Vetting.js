@@ -405,68 +405,68 @@ const Vetting = props => {
               spacebetween
             />
             {showDateTimePicker.current && (
-              <LabelledInput
-                datafield="etaStart"
-                inputType="dateTime"
-                inputVal={startDate}
-                labelText={<Xl8 xid="vet014">Start Date</Xl8>}
-                name="etaStart"
-                callback={cb}
-                className="dtp-vetting-upper"
-                required={true}
-                alt="Start Date"
-              />
-            )}
-            {showDateTimePicker.current && (
-              <LabelledInput
-                datafield="etaEnd"
-                inputType="dateTime"
-                inputVal={endDate}
-                labelText={<Xl8 xid="vet015">End Date</Xl8>}
-                name="etaEnd"
-                callback={cb}
-                required={true}
-                className="dtp-vetting-lower"
-                alt="End Date"
-              />
-            )}
-            {!showDateTimePicker.current && (
-              <LabelledInput
-                labelText={<Xl8 xid="vet016">Hour Range (Start)</Xl8>}
-                inputType="select"
-                name="startHourRange"
-                inputVal="96"
-                inputStyle="form-select"
-                datafield="startHourRange"
-                options={[
-                  { value: "6", label: "-6 hours" },
-                  { value: "12", label: "-12 hours" },
-                  { value: "24", label: "-24 hours" },
-                  { value: "48", label: "-48 hours" },
-                  { value: "96", label: "-96 hours" }
-                ]}
-                callback={cb}
-                alt="Hour range (Start)"
-              />
+              <>
+                <LabelledInput
+                  datafield="etaStart"
+                  inputType="dateTime"
+                  inputVal={startDate}
+                  labelText={<Xl8 xid="vet014">Start Date</Xl8>}
+                  name="etaStart"
+                  callback={cb}
+                  className="dtp-vetting-upper"
+                  required={true}
+                  alt="Start Date"
+                />
+                <LabelledInput
+                  datafield="etaEnd"
+                  inputType="dateTime"
+                  inputVal={endDate}
+                  labelText={<Xl8 xid="vet015">End Date</Xl8>}
+                  name="etaEnd"
+                  callback={cb}
+                  required={true}
+                  className="dtp-vetting-lower"
+                  alt="End Date"
+                />
+              </>
             )}
             {!showDateTimePicker.current && (
-              <LabelledInput
-                labelText={<Xl8 xid="vet017">Hour Range (End)</Xl8>}
-                inputType="select"
-                name="endHourRange"
-                inputVal="96"
-                inputStyle="form-select"
-                datafield="endHourRange"
-                options={[
-                  { value: "6", label: "+6 hours" },
-                  { value: "12", label: "+12 hours" },
-                  { value: "24", label: "+24 hours" },
-                  { value: "48", label: "+48 hours" },
-                  { value: "96", label: "+96 hours" }
-                ]}
-                callback={cb}
-                alt="Hour range (End)"
-              />
+              <>
+                <LabelledInput
+                  labelText={<Xl8 xid="vet016">Hour Range (Start)</Xl8>}
+                  inputType="select"
+                  name="startHourRange"
+                  inputVal="96"
+                  inputStyle="form-select"
+                  datafield="startHourRange"
+                  options={[
+                    { value: "6", label: "-6 hours" },
+                    { value: "12", label: "-12 hours" },
+                    { value: "24", label: "-24 hours" },
+                    { value: "48", label: "-48 hours" },
+                    { value: "96", label: "-96 hours" }
+                  ]}
+                  callback={cb}
+                  alt="Hour range (Start)"
+                />
+                <LabelledInput
+                  labelText={<Xl8 xid="vet017">Hour Range (End)</Xl8>}
+                  inputType="select"
+                  name="endHourRange"
+                  inputVal="96"
+                  inputStyle="form-select"
+                  datafield="endHourRange"
+                  options={[
+                    { value: "6", label: "+6 hours" },
+                    { value: "12", label: "+12 hours" },
+                    { value: "24", label: "+24 hours" },
+                    { value: "48", label: "+48 hours" },
+                    { value: "96", label: "+96 hours" }
+                  ]}
+                  callback={cb}
+                  alt="Hour range (End)"
+                />
+              </>
             )}
           </FilterForm>
         </Col>
