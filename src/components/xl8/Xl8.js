@@ -37,4 +37,10 @@ const Xl8 = props => {
   );
 };
 
+export const Xl8Text = (id, text) => {
+  const { t } = useTranslation();
+
+  return t(id, text);
+};
+
 export default Xl8;

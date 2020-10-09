@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Container } from "react-bootstrap";
 import Form from "../../../components/form/Form";
 import LabelledInput from "../../../components/labelledInput/LabelledInput";
-import Xl8 from "../../../components/xl8/Xl8";
+import Xl8, { Xl8Text } from "../../../components/xl8/Xl8";
 
 import { wlpax, wldocs } from "../../../services/serviceWrapper";
 import { hasData, asArray, titleCase } from "../../../utils/utils";
@@ -64,7 +64,7 @@ const WLModal = props => {
         inputType="text"
         name="documentNumber"
         required={true}
-        alt="Document Number"
+        alt={Xl8Text("wlm006", "Document Number")}
         callback={onFormChange}
         spacebetween
       />
@@ -90,7 +90,7 @@ const WLModal = props => {
         inputType="text"
         name="firstName"
         callback={onFormChange}
-        alt="First Name"
+        alt={["wlm008", "First Name"]}
         spacebetween
       />
       <LabelledInput
