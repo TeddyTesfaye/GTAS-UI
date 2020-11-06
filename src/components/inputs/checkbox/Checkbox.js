@@ -19,18 +19,18 @@ const CheckboxInput = props => {
   const divstyle = style.replace("checkbox");
 
   return (
-    <div className={divstyle}>
-      {/* {` ${props.label}`} */}
-      <input
-        name={props.name}
-        onChange={onChange}
-        className={style}
-        type={props.inputType}
-        value={props.inputVal}
-        checked={selected}
-        disabled={props.disabled || props.readOnly}
-      />
-    </div>
+    // <div className={divstyle}>
+    <input
+      name={props.name}
+      id={props.name}
+      onChange={onChange}
+      className={style}
+      type={props.inputType}
+      value={props.inputVal}
+      checked={selected}
+      disabled={props.disabled || props.readOnly}
+    />
+    // </div>
   );
 };
 

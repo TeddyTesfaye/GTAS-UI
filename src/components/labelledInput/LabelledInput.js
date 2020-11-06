@@ -33,9 +33,13 @@ class LabelledInput extends Component {
     this.onMultiSelectChange = this.onMultiSelectChange.bind(this);
     this.onChangeDatePicker = this.onChangeDatePicker.bind(this);
 
+    const textlabelStyle = this.props.inputType === "multiSelect" ? "" : "txtlabel";
+    const lbl = <label className={textlabelStyle}>{alt(props.labelText)}</label>;
+
     this.state = {
       isValid: true,
-      labelText: alt(props.labelText),
+      // labelText: alt(props.labelText),
+      label: lbl,
       inputVal: alt(props.inputVal),
       options: props.options,
       placeholder: alt(props.placeholder),
@@ -95,71 +99,82 @@ class LabelledInput extends Component {
 
     if (type === textareaType) {
       return (
-        <TextareaInput
-          className={inputStyle}
-          alt={this.props.alt}
-          name={this.props.name}
-          inputType={this.props.inputType}
-          inputVal={alt(this.state.inputVal)}
-          callback={this.onChange}
-          required={this.state.required}
-          placeholder={this.state.placeholder}
-          readOnly={this.props.readOnly}
-        />
+        <>
+          {this.state.label}
+          <TextareaInput
+            className={inputStyle}
+            alt={this.props.alt}
+            name={this.props.name}
+            inputType={this.props.inputType}
+            inputVal={alt(this.state.inputVal)}
+            callback={this.onChange}
+            required={this.state.required}
+            placeholder={this.state.placeholder}
+            readOnly={this.props.readOnly}
+          />
+        </>
       );
     }
 
     if (type === "label") {
       return (
-        <LabelInput
-          className={this.props.inputStyle}
-          alt={this.props.alt}
-          name={this.props.name}
-          inputVal={this.props.inputVal}
-          inline={this.props.inline}
-        />
+        <>
+          {this.state.label}
+          <LabelInput
+            className={this.props.inputStyle}
+            alt={this.props.alt}
+            name={this.props.name}
+            inputVal={this.props.inputVal}
+            inline={this.props.inline}
+          />
+        </>
       );
     }
 
     if (textTypes.includes(type)) {
       return (
-        <TextInput
-          autoFocus={this.props.autoFocus}
-          pattern={this.props.pattern}
-          className={this.props.className}
-          alt={this.props.alt}
-          name={this.props.name}
-          inputType={this.props.inputType}
-          inputVal={alt(this.state.inputVal)}
-          required={this.state.required}
-          placeholder={this.state.placeholder}
-          maxlength={this.props.maxlength}
-          readOnly={this.props.readOnly}
-          callback={this.onChange}
-        />
+        <>
+          {this.state.label}
+          <TextInput
+            autoFocus={this.props.autoFocus}
+            pattern={this.props.pattern}
+            className={this.props.className}
+            alt={this.props.alt}
+            name={this.props.name}
+            inputType={this.props.inputType}
+            inputVal={alt(this.state.inputVal)}
+            required={this.state.required}
+            placeholder={this.state.placeholder}
+            maxlength={this.props.maxlength}
+            readOnly={this.props.readOnly}
+            callback={this.onChange}
+          />
+        </>
       );
     }
     if (selectType.includes(type)) {
       return (
-        <SelectInput
-          autoFocus={this.props.autoFocus}
-          className={inputStyle}
-          alt={this.props.alt}
-          name={this.props.name}
-          inputType={this.props.inputType}
-          selected={this.props.inputVal}
-          callback={type === "select" ? this.onChange : this.onMultiSelectChange}
-          required={this.state.required}
-          placeholder={this.state.placeholder}
-          options={this.state.options}
-          readOnly={this.props.readOnly}
-        />
+        <>
+          {this.state.label}
+          <SelectInput
+            autoFocus={this.props.autoFocus}
+            className={inputStyle}
+            alt={this.props.alt}
+            name={this.props.name}
+            inputType={this.props.inputType}
+            selected={this.props.inputVal}
+            callback={type === "select" ? this.onChange : this.onMultiSelectChange}
+            required={this.state.required}
+            placeholder={this.state.placeholder}
+            options={this.state.options}
+            readOnly={this.props.readOnly}
+          />
+        </>
       );
     }
     if (boolTypes.includes(type)) {
       return (
-        <React.Fragment>
-          {this.props.labelText && <br />}
+        <>
           <CheckboxInput
             className={inputStyle}
             name={this.props.name}
@@ -173,12 +188,13 @@ class LabelledInput extends Component {
             alt={this.props.alt}
             readOnly={this.props.readOnly}
           />
-        </React.Fragment>
+          {this.state.label}
+        </>
       );
     }
     if (checkboxGroup === type) {
       return (
-        <React.Fragment>
+        <>
           {this.props.labelText && <br />}
           <CheckboxGroup
             collection={this.props.collection}
@@ -195,7 +211,7 @@ class LabelledInput extends Component {
             alt={this.props.alt}
             readOnly={this.props.readOnly}
           />
-        </React.Fragment>
+        </>
       );
     }
     if (type === fileType) {
@@ -216,14 +232,17 @@ class LabelledInput extends Component {
 
     if (type === dateTime) {
       return (
-        <ReactDateTimePicker
-          className={inputStyle}
-          name={this.props.name}
-          inputVal={this.props.inputVal}
-          callback={this.onChangeDatePicker}
-          required={this.state.required}
-          readOnly={this.props.readOnly}
-        />
+        <>
+          {this.state.label}
+          <ReactDateTimePicker
+            className={inputStyle}
+            name={this.props.name}
+            inputVal={this.props.inputVal}
+            callback={this.onChangeDatePicker}
+            required={this.state.required}
+            readOnly={this.props.readOnly}
+          />
+        </>
       );
     }
 
@@ -233,10 +252,10 @@ class LabelledInput extends Component {
   render() {
     const cls = !!this.props.spacebetween ? " space-between" : "";
     const inline = !!this.props.inline ? " input-group-append" : "";
-    const textlabelStyle = this.props.inputType === "multiSelect" ? "" : "txtlabel";
+    const ckb = this.props.inputType === "checkbox" ? " funkyradio" : "";
+
     return (
-      <FormGroup className={`${this.state.visibleStyle}${cls}${inline}`}>
-        <label className={textlabelStyle}>{this.state.labelText}</label>
+      <FormGroup className={`${this.state.visibleStyle}${cls}${inline}${ckb}`}>
         {this.getInputByType()}
       </FormGroup>
     );

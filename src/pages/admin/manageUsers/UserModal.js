@@ -277,7 +277,6 @@ const UserModal = props => {
               inputVal={row.emailEnabled}
               callback={cb}
               selected={row.emailEnabled}
-              spacebetween
             />
 
             <LabelledInput
@@ -290,7 +289,6 @@ const UserModal = props => {
               inputVal={row.highPriorityEmail}
               callback={cb}
               selected={row.highPriorityEmail}
-              spacebetween
             />
             {props.isEdit ? (
               <LabelledInput
@@ -304,7 +302,6 @@ const UserModal = props => {
                 callback={cb}
                 selected={!!row.active}
                 readOnly={isLoggedinUser(row.userId)}
-                spacebetween
               />
             ) : (
               <LabelledInput
@@ -317,7 +314,6 @@ const UserModal = props => {
                 inputVal={true}
                 callback={cb}
                 selected={true}
-                spacebetween
               />
             )}
 

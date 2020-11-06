@@ -15,15 +15,16 @@ const GroupCheckBox = ({ value, onChange, id, name, disabled }) => {
   };
 
   return (
-    <div className="form-inline space-between">
-      <label>{name}</label>
+    <div className="gtas-checkbox-style">
       <input
+        id={id}
         type="checkbox"
         disabled={disabled}
         onChange={handleChange}
         checked={value}
         value={value}
       />
+      <label for={id}>{name}</label>
     </div>
   );
 };
