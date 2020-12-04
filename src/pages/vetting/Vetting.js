@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef, useMemo} from "react";
 import Table from "../../components/table/Table";
-import { cases, notetypes, usersemails, hitcats } from "../../services/serviceWrapper";
+import {cases, notetypes, usersemails, hitcats, customSorter} from "../../services/serviceWrapper";
 import Title from "../../components/title/Title";
 import Xl8 from "../../components/xl8/Xl8";
 import LabelledInput from "../../components/labelledInput/LabelledInput";
@@ -176,6 +176,7 @@ const Vetting = props => {
       Accessor: "hitNames",
       Xl8: true,
       Header: ["wl020", "Hits"],
+      sortType: customSorter,
       Cell: ({ row }) => {
         const listdata = asArray(row.original.hitNames).map((hit, index) => {
           const triggerOverlay = !isShortText(hit, 20);

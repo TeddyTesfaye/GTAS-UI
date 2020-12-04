@@ -12,7 +12,7 @@ import RoleAuthenticator from "../../context/roleAuthenticator/RoleAuthenticator
 import { UserContext } from "../../context/user/UserContext";
 
 import { Link } from "@reach/router";
-import { flights } from "../../services/serviceWrapper";
+import {customSorter, flights} from "../../services/serviceWrapper";
 import { hasData, alt, localeDate, asArray } from "../../utils/utils";
 import { TIME, ROLE } from "../../utils/constants";
 import { Col, Tabs, Tab } from "react-bootstrap";
@@ -124,6 +124,7 @@ const Flights = props => {
     Xl8: true,
     Header: ["fl024", "Hit Aggregates"],
     disableGroupBy: true,
+    sortType: customSorter,
     Cell: ({ row }) => {
       return (
           <span

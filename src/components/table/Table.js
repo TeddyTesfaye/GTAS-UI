@@ -407,6 +407,7 @@ const Table = props => {
           accessor: acc,
           aggregate: element.aggregate,
           Aggregated: element.Aggregated,
+          sortType: typeof element.sortType != "undefined" ? element.sortType : "alphanumeric",
           disableFilters: element.disableFilters,
           disableSortBy: element.disableSortBy,
           disableExport: element.disableExport,

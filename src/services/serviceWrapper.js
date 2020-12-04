@@ -516,3 +516,40 @@ export const neo4jUrl = {
 export const kibanaUrl = {
   get: () => get(KIBANAURL, BASEHEADER)
 };
+export const customSorter = (rowA, rowB, id, desc) => {
+  let rowAHighCt = rowA.original.highPrioHitCount;
+  let rowAMedCt = rowA.original.medPrioHitCount;
+  let rowALowCt = rowA.original.lowPrioHitCount;
+  let rowBHighCt = rowB.original.highPrioHitCount;
+  let rowBMedCt = rowB.original.medPrioHitCount;
+  let rowBLowCt = rowB.original.lowPrioHitCount;
+
+  // EQUALITY CHECK IS FINAL CHECK
+  // Begin checking high count and down
+  if(rowAHighCt > rowBHighCt){
+    return 1;
+  }else if(rowBHighCt > rowAHighCt ){
+    return -1;
+  }
+  // EQUALITY CHECK IS FINAL CHECK
+  //If no return yet it means equal high prio counts,
+  //now we consider med priority
+
+  //We use similar check above as we tier down priority levels.
+  if(rowAMedCt > rowBMedCt){
+    return 1;
+  }else if(rowBMedCt > rowAMedCt ){
+    return -1;
+  }
+  // EQUALITY CHECK IS FINAL CHECK
+  //If no return yet, both have equal med prio counts
+  //now we consider low priority
+  if(rowALowCt > rowBLowCt){
+    return 1;
+  }else if(rowBLowCt > rowALowCt ){
+    return -1;
+  }
+
+  //If no return at this point, we have exhausted all options and they must have identical counts for all priorities
+  return 0;
+};

@@ -10,7 +10,7 @@ import { Col, Tabs, Tab } from "react-bootstrap";
 import Main from "../../components/main/Main";
 import RoleAuthenticator from "../../context/roleAuthenticator/RoleAuthenticator";
 import { Link } from "@reach/router";
-import { flightPassengers } from "../../services/serviceWrapper";
+import {customSorter, flightPassengers} from "../../services/serviceWrapper";
 import {
   asArray,
   hasData,
@@ -120,6 +120,7 @@ const FlightPax = props => {
     Xl8: true,
     Header: ["fp026", "Hit Aggregates"],
     disableGroupBy: true,
+    sortType: customSorter,
     aggregate: 'sum',
     Aggregated: ({ value }) => `${value} Hits`,
     Cell: ({ row }) => {
